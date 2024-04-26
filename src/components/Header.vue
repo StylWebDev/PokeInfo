@@ -5,7 +5,7 @@ import StracturesFlex from "./StracturesFlex.vue";
 
 const navbar = reactive([
   {name: "Home", link: "/", icon:  `arcticons:pokemon-unite`, bgHoverColor: `hover:bg-emerald-600 hover:text-white`, bgColor: `bg-emerald-600 text-white`},
-  {name: "Pokédex", link: "/pokedex", icon: `ic:sharp-catching-pokemon`, bgHoverColor: `hover:bg-orange-700  hover:text-white`, bgColor: `bg-orange-700 text-white`},
+  {name: "Pokédex", link: "/pokedex", icon: `ic:sharp-catching-pokemon`, bgHoverColor: `hover:bg-orange-600  hover:text-white`, bgColor: `bg-orange-600 text-white`},
   {name: "About", link: "/about", icon: `tabler:info-square-rounded-filled`, bgHoverColor: `hover:bg-sky-500 hover:text-white`, bgColor: `bg-sky-500 text-white`}
 ])
 </script>

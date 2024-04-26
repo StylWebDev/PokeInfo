@@ -35,4 +35,3 @@ export const pokemonData = () => {
 
     return {getPokeInfo,getAllPokemonInfo,getPokeEvolutions,getWeaknesses}
 }
-

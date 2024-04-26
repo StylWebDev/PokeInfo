@@ -5,7 +5,7 @@ import Header from "./components/Header.vue";
 
 <template>
 
-  <Header class="bg-neutral-200 sticky top-0 z-50 shadow-xl" />
+  <Header class="bg-neutral-200 sticky top-0 shadow-xl" style="z-index: 100"/>
  <RouterView />
 </template>
 
