@@ -1,5 +1,4 @@
 <script setup>
-
 import {Icon} from "@iconify/vue";
 import StracturesFlex from "../components/StracturesFlex.vue";
 </script>
