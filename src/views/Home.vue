@@ -7,7 +7,7 @@ import FeaturedPokemons from "../components/Home/FeaturedPokemons.vue";
 
 <template>
   <StracturesFlex justify="center" items="center">
-    <StracturesFlex :column="true" items="center" justify="center" class=" text-center cursor-default fadeIn gap-y-4 bg-neutral-100 max-sm:px-3 sm:px-16 md:px-20 py-5 rounded-b-2xl mb-10 w-[70%] max-[400px]:w-screen">
+    <StracturesFlex :column="true" items="center" justify="center" class=" text-center cursor-default fadeIn gap-y-4 bg-neutral-100 max-sm:px-3 sm:px-16 md:px-20 py-5 rounded-b-2xl mb-10 w-[70%] max-sm:w-screen">
       <Title/>
       <Sections/>
       <FeaturedPokemons/>

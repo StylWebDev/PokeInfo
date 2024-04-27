@@ -22,7 +22,7 @@ const rem = ref(0)
 <template>
   <StracturesFlex justify="center" items="center">
     <StracturesFlex :column="true" items="center" justify="center" class=" text-center cursor-default fadeIn gap-y-4 bg-neutral-100 max-sm:px-3 sm:px-16 md:px-20 py-5 rounded-b-2xl mb-10
-    w-[70%] max-[400px]:w-screen">
+    w-[70%] max-sm:w-screen">
 
       <Transition appear enter-from-class="opacity-0" appear-active-class="transition-all duration-500 ease-in">
           <h1 class="text-sky-500 md:text-3xl max-md:text-xl font-bold justify-self-start align-middle">
