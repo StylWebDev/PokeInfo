@@ -56,7 +56,7 @@ onMounted( async () => {
     if ( pokeEvolution.value.data.chain.evolves_to.length > 0) {
       if ( pokeEvolution.value.data.chain.evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+1].name
           || pokeEvolution.value.data.chain.evolves_to[0].species.name === props.name ) {
-        if (pokeEvolution.value.data.chain.evolves_to.length >= 2 ) {
+        if (pokeEvolution.value.data.chain.evolves_to.length >= 2 && i>0) {
           for (let j=0; j<pokeEvolution.value.data.chain.evolves_to.length; j++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[j].species.name)
         }else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].species.name)
 

@@ -1,5 +1,6 @@
 <script setup>
 import StracturesFlex from "../StracturesFlex.vue";
+import {onMounted, onUnmounted, ref} from "vue";
 
 defineProps({
   pokeData: {
@@ -7,6 +8,18 @@ defineProps({
     required: true
   },
 })
+
+const windowHeight = ref(window.innerWidth);
+
+onMounted(() => {
+  window.addEventListener('resize', onResize);
+});
+
+onUnmounted(() =>{
+  window.removeEventListener('resize',onResize);
+});
+
+const onResize = () => {windowHeight.value = window.innerWidth};
 </script>
 
 <template>

@@ -59,7 +59,7 @@ defineProps({
         </div>
         <div>
           <h4 class="font-semibold text-lg ">Weaknesses</h4>
-          <Grid columns="2" class="gap-1">
+          <Grid :columns="(weaknesses.size === 1) ? 1 : 2" class="gap-1">
             <div  v-for="(types,ind) in weaknesses" :key="ind"  :class="pokeType[types]" class="text-lg px-3 rounded-md font-semibold text-center">
               {{types}}
             </div>
