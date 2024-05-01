@@ -50,18 +50,43 @@ onMounted( async () => {
   while (true) {
     if (pokeEvolution.value.data.chain.species.name === props.name) {
       evolutions.value.push(pokeEvolution.value.data.chain.species.name)
-      i++;
-      console.log(count)
-    }
-    if ( pokeEvolution.value.data.chain.evolves_to.length > 0) {
-      if ( pokeEvolution.value.data.chain.evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+1].name
-          || pokeEvolution.value.data.chain.evolves_to[0].species.name === props.name ) {
-        if (pokeEvolution.value.data.chain.evolves_to.length >= 2 && i>0) {
+      if (pokeEvolution.value.data.chain.evolves_to.length > 0) {
+        if (pokeEvolution.value.data.chain.evolves_to.length >1) {
           for (let j=0; j<pokeEvolution.value.data.chain.evolves_to.length; j++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[j].species.name)
         }else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].species.name)
-
-        i++;}
+          if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0) {
+            if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length>1) {
+              for (let q=0; q<pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length; q++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[q].species.name);
+            }
+            else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name);
+          }
+          else break;
+      }
+      else break
+      i++;
     }
+    else {
+      if (pokeEvolution.value.data.chain.evolves_to.length > 0
+          && pokeEvolution.value.data.chain.evolves_to[0].species.name === props.name) {
+
+        if (pokeEvolution.value.data.chain.evolves_to.length >1) {
+          for (let j=0; j<pokeEvolution.value.data.chain.evolves_to.length; j++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[j].species.name)
+        }
+        else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].species.name)
+
+        if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0) {
+          if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length>1) {
+             for (let q=0; q<pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length; q++) pokeEvolution.value.data.chain.evolves_to[0].evolves_to[q].species.name;
+          }
+          else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name);
+        }
+        else break;
+
+        i++;
+        }
+    }
+
+    /*
     if (pokeEvolution.value.data.chain.evolves_to.length > 0 ) {
       if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0 && pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+2].name
           || pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0 && pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+1].name
@@ -69,7 +94,7 @@ onMounted( async () => {
         evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name)
         i++;
       }
-    }
+    }*/
    if (i===0) pokeEvolution.value = await getPokeEvolutions(count++);
    else break;
   }
@@ -90,7 +115,7 @@ onMounted( async () => {
       </StracturesFlex>
 
     </StracturesFlex>
-    <Evolutions :evolutions="evolutions" :all-pokemon="allPokemon"/>
+    <Evolutions :name="props.name" :evolutions="evolutions" :all-pokemon="allPokemon"/>
 
   </StracturesFlex>
 </template>
