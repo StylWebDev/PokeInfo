@@ -28,7 +28,7 @@ onUnmounted(() => {
         </div>
       </StracturesFlex>
       <StracturesFlex v-else :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 px-14 py-16 rounded-b-2xl mb-10  w-[70%] max-sm:w-screen" >
-        <h1 class="md:text-3xl max-md:text-xl font-bold justify-self-start text-darkviolet-800 brightness-150">
+        <h1 class="md:text-3xl max-md:text-xl font-bold text-center text-darkviolet-800 brightness-150">
           <Icon class="inline size-12 text-rose-900" icon="ic:sharp-catching-pokemon"/>
           Opps... looks like something's missing!</h1>
         <img src="../assets/31.svg" alt="hypno_img" class="size-60">
