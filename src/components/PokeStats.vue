@@ -97,7 +97,7 @@ onMounted( async () => {
 </script>
 
 <template>
-  <StracturesFlex v-if="evolutions.length !== 0" :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 sm:px-14 py-5 rounded-b-2xl mb-10 max-sm:w-screen" >
+  <StracturesFlex v-if="evolutions.length !== 0 || allPokemon.data.results.findIndex(val => val.name === props.name) !== -1" :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 sm:px-14 py-5 rounded-b-2xl mb-10 max-sm:w-screen" >
     <PrevNextPokemon :name="props.name" :all-pokemon="allPokemon"/>
 
     <StracturesFlex :row="true" items="center"  class="max-lg:gap-y-10  lg:gap-x-10 max-lg:flex-col ">
@@ -113,6 +113,7 @@ onMounted( async () => {
 
   </StracturesFlex>
   <Loading v-else/>
+  
 </template>
 
 <style scoped>
