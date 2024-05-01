@@ -8,6 +8,8 @@ import NameAndCry from "./PokeStats/NameAndCry.vue";
 import GeneralInfo from "./PokeStats/GeneralInfo.vue";
 import Stats from "./PokeStats/Stats.vue";
 import Evolutions from "./PokeStats/Evolutions.vue";
+import {useRouter} from "vue-router";
+const router = useRouter();
 const {getPokeInfo, getAllPokemonInfo, getPokeEvolutions} = pokemonData();
 
 const props = defineProps({
@@ -86,17 +88,13 @@ onMounted( async () => {
         }
     }
 
-    /*
-    if (pokeEvolution.value.data.chain.evolves_to.length > 0 ) {
-      if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0 && pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+2].name
-          || pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0 && pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name === allPokemon.value.data.results[allPokemon.value.data.results.findIndex(value => value.name === `${props.name}`)+1].name
-          || pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0 && pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name === props.name ) {
-        evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name)
-        i++;
-      }
-    }*/
-   if (i===0) pokeEvolution.value = await getPokeEvolutions(count++);
-   else break;
+   if (i===0) {
+     try {
+       pokeEvolution.value = await getPokeEvolutions(count++)
+     }catch (e) {
+       router.push('/404')
+     }
+   } else break;
   }
 })
 
