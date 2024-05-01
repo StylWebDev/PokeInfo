@@ -3,7 +3,7 @@ import {Icon} from "@iconify/vue";
 </script>
 
 <template>
-  <Transition appear enter-from-class="opacity-0" appear-active-class="transition-all duration-500 ease-in">
+  <Transition appear enter-from-class="scale-0" appear-active-class="transition-all duration-500 ease-in">
     <hgroup>
       <h1 class="md:text-3xl max-md:text-xl font-bold justify-self-start text-neutral-800 brightness-150">
         <Icon class="inline size-16 text-rose-900" icon="ic:twotone-catching-pokemon"/>

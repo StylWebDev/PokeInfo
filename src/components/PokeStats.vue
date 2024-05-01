@@ -72,14 +72,12 @@ onMounted( async () => {
       if (pokeEvolution.value.data.chain.evolves_to.length > 0
           && pokeEvolution.value.data.chain.evolves_to[0].species.name === props.name) {
 
-        if (pokeEvolution.value.data.chain.evolves_to.length >1) {
-          for (let j=0; j<pokeEvolution.value.data.chain.evolves_to.length; j++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[j].species.name)
-        }
-        else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].species.name)
+       evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].species.name)
 
         if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length > 0) {
           if (pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length>1) {
-             for (let q=0; q<pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length; q++) pokeEvolution.value.data.chain.evolves_to[0].evolves_to[q].species.name;
+
+             for (let q=0; q<pokeEvolution.value.data.chain.evolves_to[0].evolves_to.length; q++) evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[q].species.name);
           }
           else evolutions.value.push(pokeEvolution.value.data.chain.evolves_to[0].evolves_to[0].species.name);
         }
@@ -110,7 +108,6 @@ onMounted( async () => {
 
     </StracturesFlex>
     <Evolutions :name="props.name" :evolutions="evolutions" :all-pokemon="allPokemon"/>
-
   </StracturesFlex>
   <Loading v-else/>
   

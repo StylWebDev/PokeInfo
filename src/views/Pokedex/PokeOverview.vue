@@ -9,16 +9,18 @@ const route = useRoute();
 
 <template>
   <StracturesFlex :column="true" justify="center" items="center">
-    <Suspense>
-      <template #default>
-        <KeepAlive>
-          <PokeStats :name="route.params.name"/>
-        </KeepAlive>
-      </template>
-      <template #fallback>
-        <div class="text-darkviolet-50"><Loading/></div>
-      </template>
-    </Suspense>
+    <Transition appear enter-from-class="-translate-y-full opacity-0" enter-active-class="transition-all duration-1000 ease-in" appear-active-class="transition-all duration-1000 ease-in">
+        <Suspense>
+          <template #default>
+            <KeepAlive>
+              <PokeStats :name="route.params.name"/>
+            </KeepAlive>
+          </template>
+          <template #fallback>
+            <div class="text-darkviolet-50"><Loading/></div>
+          </template>
+        </Suspense>
+    </Transition>
   </StracturesFlex>
 </template>
 
