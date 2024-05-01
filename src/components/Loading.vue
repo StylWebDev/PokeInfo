@@ -2,28 +2,41 @@
 
 import {Icon} from "@iconify/vue";
 import StracturesFlex from "./StracturesFlex.vue";
+import {onMounted, onUnmounted, ref} from "vue";
+const i = ref(0);
+const intervalId = ref();
+onMounted(() => {
+  intervalId.value = setInterval(() => {
+  i.value++;
+},5000);
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId.value);
+})
 </script>
 
 <template>
-  <StracturesFlex :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 px-14 py-5 rounded-b-2xl mb-10" >
-    <StracturesFlex :row="true" :wrap="true" justify="start" items="start" class="w-[100%]">
-      <StracturesFlex :wrap="true" :row="true" justify="center" items="center" class="gap-4">
-        <h2 class="text-3xl font-extrabold text-rose-900 brightness-125 max-sm:text-center"><Icon class="inline size-10" icon="ic:sharp-catching-pokemon"/> Pokemons</h2>
-        <input class="block max-sm:flex-grow text-violet-200 font-light rounded-lg w-1/2 p-1 px-2 outline-0 bg-darkviolet-600 shadow-full shadow-darkviolet-200 focus:shadow-darkviolet-50 transition-all ease-in duration-500"  type="text" v-model.trim="search" placeholder="Search..." />
+  <stractures-flex :column="true" justify="center" items="center" class="w-screen">
+      <StracturesFlex v-if="i<3" :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 px-14 py-16 rounded-b-2xl mb-10  w-[70%] max-sm:w-screen" >
+        <hgroup class="text-neutral-800 text-center">
+          <h2 class="text-2xl font-bold align-top">Loading Data<Icon icon="svg-spinners:3-dots-bounce" class="inline pt-2 size-6"/></h2>
+          <p class="text-lg font-semibold">Please Wait!</p>
+        </hgroup>
+        <div class="animate-pulse border-4 border-neutral-800 rounded-full">
+          <Icon class="size-40  text-rose-700 brightness-125 animate-spin opacity-90" icon="ic:sharp-catching-pokemon"/>
+        </div>
       </StracturesFlex>
-      <div class="max-sm:text-center text-right flex-grow">
+      <StracturesFlex v-else :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 px-14 py-16 rounded-b-2xl mb-10  w-[70%] max-sm:w-screen" >
+        <h1 class="md:text-3xl max-md:text-xl font-bold justify-self-start text-darkviolet-800 brightness-150">
+          <Icon class="inline size-12 text-rose-900" icon="ic:sharp-catching-pokemon"/>
+          Opps... looks like something's missing!</h1>
+        <img src="../assets/31.svg" alt="hypno_img" class="size-60">
+        <p class=" md:text-2xl max-2xl:text-lg font-semibold text-darkviolet-800" >Sorry but we couldn't find the data you were looking for!</p>
+        <RouterLink to="/" class="transition-all duration-500 ease-in hover:brightness-150 text-darkviolet-50 bg-darkviolet-600 border-2 border-darkviolet-800 py-0.5 px-2.5 rounded-lg text-base font-semibold">Back to home</RouterLink>
+      </StracturesFlex>
+  </stractures-flex>
 
-        <button class="uppercase" @click="asc=!asc">{{(asc) ? `ASC` : `DESC`}}
-          <Transition enter-from-class="scale-0 opacity-0" enter-active-class="transition-all duration-500 ease-in" leave-to-class="scale-0 opacity-0" leave-active-class="transition-all duration-500 absolute ease-out">
-            <Icon v-if="asc" class="inline" icon="mdi:sort-ascending"/>
-            <Icon v-else class="inline" icon="mdi:sort-descending"/>
-          </Transition>
-        </button>
-
-      </div>
-    </StracturesFlex>
-    <Icon class="size-40 text-darkviolet-600" icon="svg-spinners:180-ring-with-bg"/>
-  </StracturesFlex>
 </template>
 
 <style scoped>
