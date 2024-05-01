@@ -9,6 +9,7 @@ import GeneralInfo from "./PokeStats/GeneralInfo.vue";
 import Stats from "./PokeStats/Stats.vue";
 import Evolutions from "./PokeStats/Evolutions.vue";
 import {useRouter} from "vue-router";
+import Loading from "./Loading.vue";
 const router = useRouter();
 const {getPokeInfo, getAllPokemonInfo, getPokeEvolutions} = pokemonData();
 
@@ -89,19 +90,14 @@ onMounted( async () => {
     }
 
    if (i===0) {
-     try {
        pokeEvolution.value = await getPokeEvolutions(count++)
-     }catch (e) {
-       router.push('/404')
-     }
    } else break;
   }
 })
-
 </script>
 
 <template>
-  <StracturesFlex :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 sm:px-14 py-5 rounded-b-2xl mb-10 max-sm:w-screen" >
+  <StracturesFlex v-if="pokeEvolution!==null" :column="true" justify="center" items="center" class="gap-y-8 bg-neutral-100 sm:px-14 py-5 rounded-b-2xl mb-10 max-sm:w-screen" >
     <PrevNextPokemon :name="props.name" :all-pokemon="allPokemon"/>
 
     <StracturesFlex :row="true" items="center"  class="max-lg:gap-y-10  lg:gap-x-10 max-lg:flex-col ">
@@ -116,6 +112,7 @@ onMounted( async () => {
     <Evolutions :name="props.name" :evolutions="evolutions" :all-pokemon="allPokemon"/>
 
   </StracturesFlex>
+  <Loading v-else/>
 </template>
 
 <style scoped>
