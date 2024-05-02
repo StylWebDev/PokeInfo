@@ -14,8 +14,7 @@ const navbar = reactive([
   <div>
     <StracturesFlex :column="true" justify="center" items="center">
       <RouterLink to="/" class="text-rose-900 text-center text-3xl font-bold bg-neutral-300 hover:text-rose-600  w-[100%] py-3 transition duration-500 ease-in" >
-        <Icon icon="ic:twotone-catching-pokemon" class="inline size-12"/>
-        PokeInfo
+        <img class="text-center inline hover:brightness-110 transition-all duration-500 ease-in" width="300px" src="https://pub-a65a191fa4d14606aec83a6b14268769.r2.dev/pokeTitle.png" alt="pokeTitle">
       </RouterLink>
 
       <StracturesFlex :row="true" justify="center" items="center" class="text-neutral-700">

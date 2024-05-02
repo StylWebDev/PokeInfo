@@ -22,10 +22,8 @@ defineProps({
 
         <button class="uppercase" @click="emit('sortBy')">
           <slot/>
-          <Transition enter-from-class=" opacity-0" enter-active-class="transition-all duration-300 ease-in" leave-to-class="opacity-0 absolute" leave-active-class="transition-all duration-300 ease-out">
-            <Icon v-if="asc" class="inline" icon="mdi:sort-ascending"/>
-            <Icon v-else class="inline" icon="mdi:sort-descending"/>
-          </Transition>
+           <Icon v-if="asc" class="inline hover:rotate-180 transition-all duration-500 ease-in" icon="mdi:sort-ascending"/>
+           <Icon v-else class="inline hover:rotate-180 transition-all duration-500 ease-in" icon="mdi:sort-descending"/>
         </button>
 
       </div>

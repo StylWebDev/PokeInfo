@@ -8,9 +8,8 @@ import NameAndCry from "./PokeStats/NameAndCry.vue";
 import GeneralInfo from "./PokeStats/GeneralInfo.vue";
 import Stats from "./PokeStats/Stats.vue";
 import Evolutions from "./PokeStats/Evolutions.vue";
-import {useRouter} from "vue-router";
 import Loading from "./Loading.vue";
-const router = useRouter();
+import Moves from "./PokeStats/Moves.vue";
 const {getPokeInfo, getAllPokemonInfo, getPokeEvolutions} = pokemonData();
 
 const props = defineProps({
@@ -108,6 +107,7 @@ onMounted( async () => {
 
     </StracturesFlex>
     <Evolutions :name="props.name" :evolutions="evolutions" :all-pokemon="allPokemon"/>
+    <Moves :pokeData="pokeData"/>
   </StracturesFlex>
   <Loading v-else/>
   
